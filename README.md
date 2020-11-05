@@ -229,7 +229,22 @@ so you extends all at once
   name for the state variable, then prefix set in front of that for the updater
   function. State can be defined as: data that changes over time. So how does
   this work over time? When the button is clicked, our increment function will
-  be called at which time we update the count by calling setCount.
+  be called at which time we update the count by calling setCount. React’s
+  useState hook allows you to pass a function instead of the actual value, and
+  then it will only call that function to get the state value when the component
+  is rendered the first time. So you can go from this:
+  `React.useState(someExpensiveComputation())` To this:
+  `React.useState(() => someExpensiveComputation())`
+- **React.useEffect** is a built-in hook that allows you to run some custom code
+  after React renders (and re-renders) your component to the DOM. It accepts a
+  callback function which React will call after the DOM has been updated:
+
+```javascript
+React.useEffect(() => {
+  // your side-effect code here.
+  // this is where you can make HTTP requests or interact with browser APIs.
+})
+```
 
 <!-- prettier-ignore-start -->
 [npm]: https://www.npmjs.com/
