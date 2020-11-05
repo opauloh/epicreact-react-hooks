@@ -207,13 +207,29 @@ This project follows the
 [all-contributors](https://github.com/kentcdodds/all-contributors)
 specification. Contributions of any kind welcome!
 
-## Workshop Feedback
+## Notes
 
-Each exercise has an Elaboration and Feedback link. Please fill that out after
-the exercise and instruction.
+- when using class you can call super to extend your constructor like that:
 
-At the end of the workshop, please go to this URL to give overall feedback.
-Thank you! https://kcd.im/rh-ws-feedback
+```
+class Counter extends React.Component {
+  constructor(...args) {
+    super(...args)
+  }
+}
+```
+
+so you extends all at once
+
+- **useState:** React.useState returns a pair of values. It does this by
+  returning an array with two elements (and we use destructuring syntax to
+  assign each of those values to distinct variables). The first of the pair is
+  the state value and the second is a function we can call to update the state.
+  We can name these variables whatever we want. Common convention is to choose a
+  name for the state variable, then prefix set in front of that for the updater
+  function. State can be defined as: data that changes over time. So how does
+  this work over time? When the button is clicked, our increment function will
+  be called at which time we update the count by calling setCount.
 
 <!-- prettier-ignore-start -->
 [npm]: https://www.npmjs.com/
@@ -231,4 +247,5 @@ Thank you! https://kcd.im/rh-ws-feedback
 [win-path]: https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/
 [mac-path]: http://stackoverflow.com/a/24322978/971592
 [issue]: https://github.com/kentcdodds/react-hooks/issues/new
+
 <!-- prettier-ignore-end -->
