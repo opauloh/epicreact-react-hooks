@@ -249,7 +249,16 @@ React.useEffect(() => {
 - Hook Flow diagram: <img
         src="https://raw.githubusercontent.com/donavon/hook-flow/master/hook-flow.png"
       />
+
+- **Lifting State**: When you find the lowest common parent shared between the
+  two components and placing the state management there, and then passing the
+  state and a mechanism for updating that state down into the components that
+  need it.
+- **Colocating State**: The oposite of lifting, is to place code as close to
+  where it's relevant as possible
+
   <!-- prettier-ignore-start -->
+
   [npm]: https://www.npmjs.com/
   [node]: https://nodejs.org
   [git]: https://git-scm.com/
