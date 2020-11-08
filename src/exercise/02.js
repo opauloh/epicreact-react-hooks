@@ -3,32 +3,58 @@
 
 import * as React from 'react'
 
-const getInitialValue = initialName =>
-  window.localStorage.getItem('name') || initialName
+function useLocalStorageState(
+  key,
+  initialValue,
+  {serialize = JSON.stringify, deserialize = JSON.parse} = {},
+) {
+  const [value, setValue] = React.useState(() => {
+    const localStorageValue = window.localStorage.getItem(key)
+    if (localStorageValue) return deserialize(localStorageValue)
 
-function Greeting({initialName = ''}) {
-  const [name, setName] = React.useState(() => getInitialValue(initialName))
+    return typeof initialValue === 'function' ? initialValue() : initialValue
+  })
+
+  const prevKeyRef = React.useRef(key)
 
   React.useEffect(() => {
-    window.localStorage.setItem('name', name)
-  }, [name])
+    const prevKey = prevKeyRef.current
+    if (prevKey !== key) window.localStorage.removeItem(prevKeyRef.current)
+
+    prevKeyRef.current = key
+    window.localStorage.setItem(key, serialize(value))
+  }, [key, serialize, value])
+
+  return [value, setValue]
+}
+
+function Greeting({initialName = ''}) {
+  const [name, setName] = useLocalStorageState('loal', {
+    firstName: initialName,
+  })
 
   function handleChange(event) {
-    setName(event.target.value)
+    setName({
+      firstName: event.target.value,
+    })
   }
   return (
     <div>
       <form>
         <label htmlFor="name">Name: </label>
-        <input value={name} onChange={handleChange} id="name" />
+        <input value={name.firstName} onChange={handleChange} id="name" />
       </form>
-      {name ? <strong>Hello {name}</strong> : 'Please type your name'}
+      {name.firstName ? (
+        <strong>Hello {name.firstName}</strong>
+      ) : (
+        'Please type your name'
+      )}
     </div>
   )
 }
 
 function App() {
-  return [...Array(1)].map((a, idx) => <Greeting key={idx} />)
+  return <Greeting />
 }
 
 export default App
