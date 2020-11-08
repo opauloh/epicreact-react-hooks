@@ -246,21 +246,30 @@ React.useEffect(() => {
 })
 ```
 
-<!-- prettier-ignore-start -->
-[npm]: https://www.npmjs.com/
-[node]: https://nodejs.org
-[git]: https://git-scm.com/
-[build-badge]: https://img.shields.io/github/workflow/status/kentcdodds/react-hooks/validate/main?logo=github&style=flat-square
-[build]: https://github.com/kentcdodds/react-hooks/actions?query=workflow%3Avalidate
-[license-badge]: https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
-[license]: https://github.com/kentcdodds/react-hooks/blob/main/LICENSE
-[coc-badge]: https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square
-[coc]: https://github.com/kentcdodds/react-hooks/blob/main/CODE_OF_CONDUCT.md
-[emojis]: https://github.com/kentcdodds/all-contributors#emoji-key
-[all-contributors]: https://github.com/kentcdodds/all-contributors
-[all-contributors-badge]: https://img.shields.io/github/all-contributors/kentcdodds/react-hooks?color=orange&style=flat-square
-[win-path]: https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/
-[mac-path]: http://stackoverflow.com/a/24322978/971592
-[issue]: https://github.com/kentcdodds/react-hooks/issues/new
+- Hook Flow diagram: <img
+        src="https://raw.githubusercontent.com/donavon/hook-flow/master/hook-flow.png"
+      />
+  <!-- prettier-ignore-start -->
+  [npm]: https://www.npmjs.com/
+  [node]: https://nodejs.org
+  [git]: https://git-scm.com/
+  [build-badge]:
+    https://img.shields.io/github/workflow/status/kentcdodds/react-hooks/validate/main?logo=github&style=flat-square
+  [build]:
+    https://github.com/kentcdodds/react-hooks/actions?query=workflow%3Avalidate
+  [license-badge]:
+    https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
+  [license]: https://github.com/kentcdodds/react-hooks/blob/main/LICENSE
+  [coc-badge]:
+    https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square
+  [coc]: https://github.com/kentcdodds/react-hooks/blob/main/CODE_OF_CONDUCT.md
+  [emojis]: https://github.com/kentcdodds/all-contributors#emoji-key
+  [all-contributors]: https://github.com/kentcdodds/all-contributors
+  [all-contributors-badge]:
+    https://img.shields.io/github/all-contributors/kentcdodds/react-hooks?color=orange&style=flat-square
+  [win-path]:
+    https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/
+  [mac-path]: http://stackoverflow.com/a/24322978/971592
+  [issue]: https://github.com/kentcdodds/react-hooks/issues/new
 
 <!-- prettier-ignore-end -->
