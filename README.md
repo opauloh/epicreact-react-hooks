@@ -234,7 +234,8 @@ so you extends all at once
   then it will only call that function to get the state value when the component
   is rendered the first time. So you can go from this:
   `React.useState(someExpensiveComputation())` To this:
-  `React.useState(() => someExpensiveComputation())`
+  `React.useState(() => someExpensiveComputation())` - This is also called Lazy
+  state initialization
 - **React.useEffect** is a built-in hook that allows you to run some custom code
   after React renders (and re-renders) your component to the DOM. It accepts a
   callback function which React will call after the DOM has been updated:
@@ -276,6 +277,9 @@ console.log(array1.fill(5, 1));
 console.log(array1.fill(6));
 // expected output: [6, 6, 6, 6]
 ```
+
+- Array .slice : The slice() method returns the selected elements in an array,
+  as a new array object. ex: `history.slice(0, currentStep + 1)`
 
   <!-- prettier-ignore-start -->
 
