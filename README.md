@@ -263,23 +263,41 @@ React.useEffect(() => {
   value, from a start index (default 0) to an end index (default array.length).
   It returns the modified array. Ex: `Array(9).fill(null)`,
 
-```
-const array1 = [1, 2, 3, 4];
+```js
+const array1 = [1, 2, 3, 4]
 
 // fill with 0 from position 2 until position 4
-console.log(array1.fill(0, 2, 4));
+console.log(array1.fill(0, 2, 4))
 // expected output: [1, 2, 0, 0]
 
 // fill with 5 from position 1
-console.log(array1.fill(5, 1));
+console.log(array1.fill(5, 1))
 // expected output: [1, 5, 5, 5]
 
-console.log(array1.fill(6));
+console.log(array1.fill(6))
 // expected output: [6, 6, 6, 6]
 ```
 
 - Array .slice : The slice() method returns the selected elements in an array,
   as a new array object. ex: `history.slice(0, currentStep + 1)`
+
+- DOM: to get get access to the DOM, you need to ask React to give you access to
+  a particular DOM node when it renders your component. The way this happens is
+  through a special prop called ref. Additionally, we’ll need to clean up after
+  ourselves if this component is unmounted. Otherwise we’ll have event handlers
+  dangling around on DOM nodes that are no longer in the document.
+
+```js
+function MyDiv() {
+  const myDivRef = React.useRef()
+  React.useEffect(() => {
+    const myDiv = myDivRef.current
+    // myDiv is the div DOM node!
+    console.log(myDiv)
+  }, [])
+  return <div ref={myDivRef}>hi</div>
+}
+```
 
   <!-- prettier-ignore-start -->
 
