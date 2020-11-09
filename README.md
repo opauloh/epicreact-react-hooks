@@ -256,29 +256,49 @@ React.useEffect(() => {
   need it.
 - **Colocating State**: The oposite of lifting, is to place code as close to
   where it's relevant as possible
+- **Managed State**: State that you need to explicitly manage
+- **Derived State**: State that you can calculate based on other state
+- Array .fill The fill() method changes all elements in an array to a static
+  value, from a start index (default 0) to an end index (default array.length).
+  It returns the modified array. Ex: `Array(9).fill(null)`,
+
+```
+const array1 = [1, 2, 3, 4];
+
+// fill with 0 from position 2 until position 4
+console.log(array1.fill(0, 2, 4));
+// expected output: [1, 2, 0, 0]
+
+// fill with 5 from position 1
+console.log(array1.fill(5, 1));
+// expected output: [1, 5, 5, 5]
+
+console.log(array1.fill(6));
+// expected output: [6, 6, 6, 6]
+```
 
   <!-- prettier-ignore-start -->
 
-  [npm]: https://www.npmjs.com/
-  [node]: https://nodejs.org
-  [git]: https://git-scm.com/
-  [build-badge]:
-    https://img.shields.io/github/workflow/status/kentcdodds/react-hooks/validate/main?logo=github&style=flat-square
-  [build]:
-    https://github.com/kentcdodds/react-hooks/actions?query=workflow%3Avalidate
-  [license-badge]:
-    https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
-  [license]: https://github.com/kentcdodds/react-hooks/blob/main/LICENSE
-  [coc-badge]:
-    https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square
-  [coc]: https://github.com/kentcdodds/react-hooks/blob/main/CODE_OF_CONDUCT.md
-  [emojis]: https://github.com/kentcdodds/all-contributors#emoji-key
-  [all-contributors]: https://github.com/kentcdodds/all-contributors
-  [all-contributors-badge]:
-    https://img.shields.io/github/all-contributors/kentcdodds/react-hooks?color=orange&style=flat-square
-  [win-path]:
-    https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/
-  [mac-path]: http://stackoverflow.com/a/24322978/971592
-  [issue]: https://github.com/kentcdodds/react-hooks/issues/new
+[npm]: https://www.npmjs.com/
+[node]: https://nodejs.org
+[git]: https://git-scm.com/
+[build-badge]:
+  https://img.shields.io/github/workflow/status/kentcdodds/react-hooks/validate/main?logo=github&style=flat-square
+[build]:
+  https://github.com/kentcdodds/react-hooks/actions?query=workflow%3Avalidate
+[license-badge]:
+  https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
+[license]: https://github.com/kentcdodds/react-hooks/blob/main/LICENSE
+[coc-badge]:
+  https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square
+[coc]: https://github.com/kentcdodds/react-hooks/blob/main/CODE_OF_CONDUCT.md
+[emojis]: https://github.com/kentcdodds/all-contributors#emoji-key
+[all-contributors]: https://github.com/kentcdodds/all-contributors
+[all-contributors-badge]:
+  https://img.shields.io/github/all-contributors/kentcdodds/react-hooks?color=orange&style=flat-square
+[win-path]:
+  https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/
+[mac-path]: http://stackoverflow.com/a/24322978/971592
+[issue]: https://github.com/kentcdodds/react-hooks/issues/new
 
 <!-- prettier-ignore-end -->
