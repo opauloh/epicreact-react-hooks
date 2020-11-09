@@ -35,84 +35,60 @@ function Board({onClick, squares}) {
 }
 
 function Game() {
-  const [squares, setSquares] = useLocalStorageState('squares', () =>
-    Array(9).fill(null),
+  const [currentStep, setCurrentStep] = useLocalStorageState(
+    'tic-tac-toe:step',
+    0,
   )
+  const [history, setHistory] = useLocalStorageState('tic-tac-toe:history', [
+    Array(9).fill(null),
+  ])
 
-  const [currentSquare, setCurrentSquare] = React.useState(() => squares)
+  const squares = history[currentStep]
 
-  const [moves, setMoves] = useLocalStorageState('history', () => [squares])
-
-  React.useEffect(() => {
-    setCurrentSquare(squares)
-  }, [squares])
-
-  const nextValue = calculateNextValue(currentSquare)
-  const winner = calculateWinner(currentSquare)
-  const status = calculateStatus(winner, currentSquare, nextValue)
+  const nextValue = calculateNextValue(squares)
+  const winner = calculateWinner(squares)
+  const status = calculateStatus(winner, squares, nextValue)
 
   function restart() {
-    setSquares(Array(9).fill(null))
-    setMoves([Array(9).fill(null)])
+    setHistory([Array(9).fill(null)])
+    setCurrentStep(0)
   }
 
   function selectSquare(square) {
-    if (currentSquare[square] || winner) return
+    if (squares[square] || winner) return
 
-    let squaresCopy = [...currentSquare]
+    const newHistory = history.slice(0, currentStep + 1)
+
+    const squaresCopy = [...squares]
     squaresCopy[square] = nextValue
 
-    setSquares(squaresCopy)
-
-    const movesArr = moves.reduce(
-      (prev, curr) => {
-        if (prev.found) return prev
-
-        if (JSON.stringify(curr) === JSON.stringify(currentSquare))
-          prev.found = true
-
-        prev.moves.push(curr)
-
-        return prev
-      },
-      {
-        found: false,
-        moves: [],
-      },
-    )
-
-    setMoves([...movesArr.moves].concat([squaresCopy]))
+    setHistory([...newHistory, squaresCopy])
+    setCurrentStep(newHistory.length)
   }
 
+  const moves = history.map((_, step) => {
+    const desc = step === 0 ? 'Go to game start' : `Go to move #${step}`
+    const isCurrentStep = currentStep === step
+
+    return (
+      <li key={step}>
+        <button disabled={isCurrentStep} onClick={() => setCurrentStep(step)}>
+          {desc} {isCurrentStep ? ' (current)' : null}
+        </button>
+      </li>
+    )
+  })
   return (
     <div className="game">
       <div className="game-board">
-        <Board onClick={selectSquare} squares={currentSquare} />
+        <Board onClick={selectSquare} squares={squares} />
         <button className="restart" onClick={restart}>
           restart
         </button>
       </div>
       <div className="game-info">
         <div>{status}</div>
-        <ol>
-          {moves.map((move, idx) => {
-            return (
-              <li key={idx}>
-                <button
-                  disabled={
-                    JSON.stringify(move) === JSON.stringify(currentSquare)
-                  }
-                  onClick={() => setCurrentSquare(move)}
-                >
-                  {idx === 0 ? 'Go to game start' : `Go to move #${idx}`}
-                  {JSON.stringify(move) === JSON.stringify(currentSquare)
-                    ? ' (current)'
-                    : ''}
-                </button>
-              </li>
-            )
-          })}
-        </ol>
+        <ol>{moves}</ol>
       </div>
     </div>
   )
