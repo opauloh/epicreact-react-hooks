@@ -349,6 +349,40 @@ relying on existing state or booleans.
   ways we could do this by modifying the ErrorBoundary, but one thing you can do
   when you want to reset the state of a component, is by providing it a key prop
   which can be used to unmount and re-mount a component.
+
+```js
+
+class ErrorBoundary extends React.Component {
+  state = {error : null}
+
+  static getDerivedStateFromError(error) {
+    return {error}
+  }
+
+  render() {
+    const {error} = this.state
+    if (error) {
+      return <this.props.FallbackComponent error={error} />
+    }
+    return this.props.children
+  }
+}
+
+function ErrorFallback({error}) {
+  return <div>
+  There was an error:
+  <pre style={{whiteSpace: 'normal'}}>{error.message}</pre>
+}
+
+<ErrorBoundary FallbackComponent={ErrorFallback}>
+  <PokemonInfo pokemonoName={pokemonName}>
+</ErrorBoundary>
+
+```
+
+One thing that I want to make a particular note of here is that where you place
+this error boundary has significance on what happens with react.
+
 - **react-error-boundary** : As cool as our own ErrorBoundary is, I’d rather not
   have to maintain it in the long-term. Luckily for us, there’s an npm package
   we can use instead and it’s already installed into this project. It’s called
