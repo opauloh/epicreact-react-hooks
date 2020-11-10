@@ -14,40 +14,29 @@ import {
 } from '../pokemon'
 
 function PokemonInfo({pokemonName = ''}) {
-  const [pokemon, setPokemon] = React.useState(null)
-  const [error, setError] = React.useState(null)
+  const [{status, pokemon, error}, setState] = React.useState({
+    status: 'idle',
+    pokemon: null,
+    error: null,
+  })
 
   React.useEffect(() => {
     if (pokemonName === '') return
 
-    setPokemon(null)
-    setError(null)
+    setState({status: 'loading'})
 
     fetchPokemon(pokemonName)
-      .then(pokemonData => {
-        setPokemon(pokemonData)
+      .then(pokemon => {
+        setState({status: 'resolved', pokemon})
       })
-      .catch(err => setError(err))
+      .catch(error => {
+        setState({status: 'rejected', error})
+      })
   }, [pokemonName])
 
-  // 🐨 Have state for the pokemon (null)
-  // 🐨 use React.useEffect where the callback should be called whenever the
-  // pokemon name changes.
-  // 💰 DON'T FORGET THE DEPENDENCIES ARRAY!
-  // 💰 if the pokemonName is falsy (an empty string) then don't bother making the request (exit early).
-  // 🐨 before calling `fetchPokemon`, make sure to update the loading state
-  // 💰 Use the `fetchPokemon` function to fetch a pokemon by its name:
-  //   fetchPokemon('Pikachu').then(
-  //     pokemonData => { /* update all the state here */},
-  //   )
-  // 🐨 return the following things based on the `pokemon` state and `pokemonName` prop:
-  //   1. no pokemonName: 'Submit a pokemon'
-  //   2. pokemonName but no pokemon: <PokemonInfoFallback name={pokemonName} />
-  //   3. pokemon: <PokemonDataView pokemon={pokemon} />
+  if (status === 'idle') return 'Submit a pokemon'
 
-  if (pokemonName === '') return 'Submit a pokemon'
-
-  if (error)
+  if (status === 'rejected')
     return (
       <div role="alert">
         There was an error:{' '}
@@ -55,11 +44,9 @@ function PokemonInfo({pokemonName = ''}) {
       </div>
     )
 
-  if (!pokemon) return <PokemonInfoFallback name={pokemonName} />
+  if (status === 'loading') return <PokemonInfoFallback name={pokemonName} />
 
   return <PokemonDataView pokemon={pokemon} />
-  // 💣 remove this
-  // return 'TODO'
 }
 
 function App() {
