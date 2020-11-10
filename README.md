@@ -299,7 +299,31 @@ function MyDiv() {
 }
 ```
 
-  <!-- prettier-ignore-start -->
+- This is how we use async/await in an useEffect:
+
+```js
+React.useEffect(() => {
+  async function effect() {
+    const result = await doSomeAsyncThing()
+    // do something with the result
+  }
+  effect()
+})
+```
+
+- But typically is just easier to extract all the async code into a utility
+  function which I call and then use the promise-based .then method instead of
+  using async/await syntax:
+
+```js
+React.useEffect(() => {
+  doSomeAsyncThing().then(result => {
+    // do something with the result
+  })
+})
+```
+
+<!-- prettier-ignore-start -->
 
 [npm]: https://www.npmjs.com/
 [node]: https://nodejs.org
