@@ -323,6 +323,16 @@ React.useEffect(() => {
 })
 ```
 
+- use Status instead of isLoading, isError: We could make things much simpler by
+  having some state to set the explicit status of our component. Our component
+  can be in the following "states":
+
+idle: no request made yet pending: request started resolved: request successful
+rejected: request failed
+
+Try to use a status state by setting it to these string values rather than
+relying on existing state or booleans.
+
 <!-- prettier-ignore-start -->
 
 [npm]: https://www.npmjs.com/
