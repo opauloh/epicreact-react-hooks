@@ -333,6 +333,27 @@ rejected: request failed
 Try to use a status state by setting it to these string values rather than
 relying on existing state or booleans.
 
+- **Error handling** : No matter how hard you try, eventually your app code just
+  isn’t going to behave the way you expect it to and you’ll need to handle those
+  exceptions. If an error is thrown and unhandled, your application will be
+  removed from the page, leaving the user with a blank screen… Kind of awkward…
+  Luckily for us, there’s a simple way to handle errors in your application
+  using a special kind of component called an Error Boundary. Unfortunately,
+  there is currently no way to create an Error Boundary component with a
+  function and you have to use a class component instead. The reason this is
+  happening is because the error that’s stored in the internal state of the
+  ErrorBoundary component isn’t getting reset, so it’s not rendering the
+  children we’re passing to it. So what we need to do is reset the
+  ErrorBoundary’s error state to null so it will re-render. But how do we access
+  the internal state of our ErrorBoundary to reset it? Well, there are a few
+  ways we could do this by modifying the ErrorBoundary, but one thing you can do
+  when you want to reset the state of a component, is by providing it a key prop
+  which can be used to unmount and re-mount a component.
+- **react-error-boundary** : As cool as our own ErrorBoundary is, I’d rather not
+  have to maintain it in the long-term. Luckily for us, there’s an npm package
+  we can use instead and it’s already installed into this project. It’s called
+  react-error-boundary.
+
 <!-- prettier-ignore-start -->
 
 [npm]: https://www.npmjs.com/
