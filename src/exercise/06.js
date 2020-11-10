@@ -43,7 +43,7 @@ function PokemonInfo({pokemonName = ''}) {
 
   if (status === 'idle') return 'Submit a pokemon'
 
-  if (status === 'rejected') throw new Error(error.message)
+  if (status === 'rejected') throw error
   // return (
   //   <div role="alert">
   //     There was an error:{' '}
