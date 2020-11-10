@@ -387,7 +387,8 @@ this error boundary has significance on what happens with react.
   have to maintain it in the long-term. Luckily for us, there’s an npm package
   we can use instead and it’s already installed into this project. It’s called
   react-error-boundary.
-
+- **Tricks** - resetting component: whenever you need to reset components, you
+can do this easily by just changing the key prop
 <!-- prettier-ignore-start -->
 
 [npm]: https://www.npmjs.com/
